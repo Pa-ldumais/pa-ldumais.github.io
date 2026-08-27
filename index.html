@@ -5,28 +5,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Solud Makerspace</title>
-  <meta name="description" content="Solud Makerspace — Innovating with makers, developers and dreamers.">
+  <meta name="description" content="Solud Makerspace — Innovating with makers, developers & dreamers.">
 
   <style>
     :root {
-      --bg: #0d1117;
-      --card: #161b22;
-      --text: #f0f6fc;
-      --muted: #8b949e;
-      --accent: #58a6ff;
-      --border: #30363d;
+      --bg: #f7f9fc;
+      --surface: #ffffff;
+      --surface-hover: #f1f5fb;
+      --text: #172033;
+      --muted: #667085;
+      --accent: #2563eb;
+      --accent-light: #e8f0ff;
+      --border: #e4e8ef;
+      --shadow: 0 10px 30px rgba(30, 50, 90, 0.08);
+    }
+
+    body.dark {
+      --bg: #0f172a;
+      --surface: #172033;
+      --surface-hover: #1e293b;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --accent: #60a5fa;
+      --accent-light: #172554;
+      --border: #273449;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
     }
 
     * {
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family:
+        Inter, ui-sans-serif, system-ui, -apple-system,
+        BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
     }
 
     a {
@@ -35,20 +57,108 @@
     }
 
     .container {
-      width: min(100% - 40px, 1000px);
+      width: min(100% - 40px, 1050px);
       margin: auto;
     }
 
-    header {
-      text-align: center;
-      padding: 100px 20px 80px;
+    /* Navigation */
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(14px);
+      background: color-mix(in srgb, var(--bg) 85%, transparent);
       border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .theme-toggle {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 8px;
+      padding: 7px 10px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    /* Hero */
+
+    header {
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      padding: 120px 20px 110px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: var(--accent);
+      opacity: 0.08;
+      border-radius: 50%;
+      filter: blur(100px);
+      top: -250px;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 20px;
     }
 
     header h1 {
       margin: 0;
-      font-size: clamp(2.5rem, 7vw, 4.5rem);
-      letter-spacing: -2px;
+      font-size: clamp(2.8rem, 8vw, 5rem);
+      line-height: 1;
+      letter-spacing: -3px;
     }
 
     header h1 span {
@@ -56,16 +166,17 @@
     }
 
     header h2 {
-      margin: 15px 0;
-      font-size: 1.3rem;
-      font-weight: 400;
+      margin: 25px 0 15px;
+      font-size: clamp(1.2rem, 3vw, 1.5rem);
+      font-weight: 500;
       color: var(--muted);
     }
 
     header p {
       max-width: 650px;
-      margin: 25px auto;
+      margin: auto;
       color: var(--muted);
+      font-size: 1.05rem;
     }
 
     .buttons {
@@ -73,42 +184,75 @@
       justify-content: center;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 30px;
+      margin-top: 35px;
     }
 
     .button {
-      padding: 10px 18px;
+      padding: 11px 18px;
       border: 1px solid var(--border);
-      border-radius: 8px;
-      background: var(--card);
-      transition: 0.2s;
+      border-radius: 9px;
+      background: var(--surface);
+      box-shadow: 0 3px 10px rgba(30, 50, 90, 0.04);
+      transition:
+        transform 0.2s,
+        border-color 0.2s,
+        box-shadow 0.2s;
     }
 
     .button:hover {
+      transform: translateY(-3px);
       border-color: var(--accent);
-      color: var(--accent);
+      box-shadow: var(--shadow);
     }
 
+    .button.primary {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    /* Sections */
+
     section {
-      padding: 70px 0;
+      padding: 90px 0;
       border-bottom: 1px solid var(--border);
     }
 
-    h2 {
+    section h2 {
       font-size: 2rem;
       margin-top: 0;
+      margin-bottom: 35px;
+      letter-spacing: -0.5px;
     }
+
+    .section-intro {
+      max-width: 700px;
+      color: var(--muted);
+      margin-top: -20px;
+      margin-bottom: 35px;
+    }
+
+    /* Philosophy */
 
     .philosophy {
       text-align: center;
     }
 
-    blockquote {
-      margin: 30px auto;
-      font-size: 1.8rem;
-      font-weight: 600;
+    .philosophy blockquote {
+      margin: 35px auto;
+      font-size: clamp(1.7rem, 4vw, 2.4rem);
+      font-weight: 800;
       color: var(--accent);
+      letter-spacing: -1px;
     }
+
+    .philosophy p {
+      max-width: 700px;
+      margin: 12px auto;
+      color: var(--muted);
+    }
+
+    /* Cards */
 
     .grid {
       display: grid;
@@ -117,31 +261,56 @@
     }
 
     .card {
-      padding: 25px;
-      background: var(--card);
+      padding: 28px;
+      background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 14px;
+      box-shadow: 0 4px 15px rgba(30, 50, 90, 0.03);
+      transition:
+        transform 0.25s,
+        box-shadow 0.25s,
+        border-color 0.25s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow);
+      border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+    }
+
+    .card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
     }
 
     .card h3 {
-      margin-top: 0;
+      margin: 0 0 8px;
+      font-size: 1.15rem;
     }
 
     .card p {
+      margin: 0;
       color: var(--muted);
-      margin-bottom: 0;
     }
+
+    /* Values */
 
     .values {
       display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 15px;
     }
 
     .value {
-      padding: 20px;
-      background: var(--card);
+      padding: 22px;
+      background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 10px;
+      border-radius: 12px;
+      transition: transform 0.2s;
+    }
+
+    .value:hover {
+      transform: translateX(5px);
     }
 
     .value strong {
@@ -153,6 +322,23 @@
       color: var(--muted);
     }
 
+    /* Connect */
+
+    .connect {
+      text-align: center;
+    }
+
+    .connect .grid {
+      text-align: left;
+    }
+
+    .connect a {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* Footer */
+
     footer {
       padding: 35px 20px;
       text-align: center;
@@ -160,17 +346,59 @@
       font-size: 0.9rem;
     }
 
+    /* Scroll animation */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(25px);
+      transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Mobile */
+
     @media (max-width: 700px) {
-      header {
-        padding: 70px 20px;
+
+      .container {
+        width: min(100% - 30px, 1050px);
       }
 
-      .grid {
-        grid-template-columns: 1fr;
+      .nav-links {
+        display: none;
+      }
+
+      header {
+        padding: 90px 20px;
+      }
+
+      header h1 {
+        letter-spacing: -2px;
       }
 
       section {
-        padding: 50px 0;
+        padding: 65px 0;
+      }
+
+      .grid,
+      .values {
+        grid-template-columns: 1fr;
+      }
+
+      .buttons {
+        flex-direction: column;
+        max-width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .button {
+        text-align: center;
       }
     }
   </style>
@@ -178,11 +406,45 @@
 
 <body>
 
-  <header>
-    <div class="container">
-      <h1>🧠 <span>Solud</span> Makerspace</h1>
+  <!-- Navigation -->
 
-      <h2>Innovating with makers, developers & dreamers</h2>
+  <nav>
+    <div class="container nav-inner">
+
+      <a href="#" class="logo">
+        🧠 <span>Solud</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#philosophy">Philosophy</a>
+        <a href="#what-we-do">What We Do</a>
+        <a href="#values">Values</a>
+        <a href="#connect">Connect</a>
+      </div>
+
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        🌙
+      </button>
+
+    </div>
+  </nav>
+
+  <!-- Hero -->
+
+  <header>
+    <div class="container hero-content">
+
+      <div class="badge">
+        Makers · Developers · Dreamers
+      </div>
+
+      <h1>
+        🧠 <span>Solud</span> Makerspace
+      </h1>
+
+      <h2>
+        Innovating with makers, developers & dreamers
+      </h2>
 
       <p>
         Building open-source tools, cloud-native systems,
@@ -190,22 +452,39 @@
       </p>
 
       <div class="buttons">
-        <a class="button" href="https://solud.dev">🌐 Website</a>
-        <a class="button" href="https://github.com/Pa-ldumais">💻 GitHub</a>
-        <a class="button" href="https://www.linkedin.com/company/soluddev">💼 LinkedIn</a>
-        <a class="button" href="mailto:support@solud.dev">✉️ Email</a>
+
+        <a class="button primary" href="https://solud.dev">
+          🌐 Visit solud.dev
+        </a>
+
+        <a class="button" href="https://github.com/Pa-ldumais">
+          💻 GitHub
+        </a>
+
+        <a class="button" href="https://www.linkedin.com/company/soluddev">
+          💼 LinkedIn
+        </a>
+
+        <a class="button" href="mailto:support@solud.dev">
+          ✉️ Email
+        </a>
+
       </div>
+
     </div>
   </header>
 
   <main>
 
-    <section class="philosophy">
+    <!-- Philosophy -->
+
+    <section id="philosophy" class="philosophy reveal">
       <div class="container">
+
         <h2>✨ Our Philosophy</h2>
 
         <blockquote>
-          "Build. Learn. Share. Repeat."
+          “Build. Learn. Share. Repeat.”
         </blockquote>
 
         <p>
@@ -218,40 +497,54 @@
           to bring their ideas to life through accessible technology
           and collaborative learning.
         </p>
+
       </div>
     </section>
 
-    <section>
+    <!-- What We Do -->
+
+    <section id="what-we-do" class="reveal">
       <div class="container">
+
         <h2>🚀 What We Do</h2>
+
+        <p class="section-intro">
+          We explore technology from the practical to the creative,
+          building things that are useful, interesting, and accessible.
+        </p>
 
         <div class="grid">
 
           <div class="card">
-            <h3>🛠️ Open-Source Tools</h3>
+            <div class="card-icon">🛠️</div>
+            <h3>Open-Source Tools</h3>
             <p>
-              Building utilities and frameworks that anyone can use,
+              Utilities and frameworks that anyone can use,
               modify, and improve.
             </p>
           </div>
 
           <div class="card">
-            <h3>☁️ Cloud-Native Systems</h3>
+            <div class="card-icon">☁️</div>
+            <h3>Cloud-Native Systems</h3>
             <p>
-              Crafting scalable and modern infrastructure solutions.
+              Modern infrastructure designed to be scalable,
+              reliable, and maintainable.
             </p>
           </div>
 
           <div class="card">
-            <h3>🎨 Creative Tech</h3>
+            <div class="card-icon">🎨</div>
+            <h3>Creative Tech</h3>
             <p>
-              Exploring the intersection of technology, art,
-              and innovation.
+              Exploring the intersection of technology,
+              art, experimentation, and innovation.
             </p>
           </div>
 
           <div class="card">
-            <h3>🤝 Community Building</h3>
+            <div class="card-icon">🤝</div>
+            <h3>Community Building</h3>
             <p>
               Creating spaces where knowledge flows freely
               and collaboration thrives.
@@ -259,11 +552,15 @@
           </div>
 
         </div>
+
       </div>
     </section>
 
-    <section>
+    <!-- Values -->
+
+    <section id="values" class="reveal">
       <div class="container">
+
         <h2>🌟 Core Values</h2>
 
         <div class="values">
@@ -271,7 +568,7 @@
           <div class="value">
             <strong>🔓 Open by Default</strong>
             <span>
-              We believe in transparency and open-source collaboration.
+              Transparency and open-source collaboration come first.
             </span>
           </div>
 
@@ -292,16 +589,20 @@
           <div class="value">
             <strong>🌱 Sustainable Growth</strong>
             <span>
-              Building systems and communities that last.
+              We build systems and communities designed to last.
             </span>
           </div>
 
         </div>
+
       </div>
     </section>
 
-    <section>
+    <!-- Connect -->
+
+    <section id="connect" class="connect reveal">
       <div class="container">
+
         <h2>📫 Connect With Us</h2>
 
         <div class="grid">
@@ -341,6 +642,7 @@
           </div>
 
         </div>
+
       </div>
     </section>
 
@@ -349,6 +651,43 @@
   <footer>
     Made with ❤️ by the Solud community
   </footer>
+
+  <script>
+    // Theme toggle
+
+    const toggle = document.getElementById("themeToggle");
+
+    toggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+
+      toggle.textContent =
+        document.body.classList.contains("dark")
+          ? "☀️"
+          : "🌙";
+    });
+
+    // Scroll reveal
+
+    const elements = document.querySelectorAll(".reveal");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.15
+      }
+    );
+
+    elements.forEach((element) => {
+      observer.observe(element);
+    });
+  </script>
 
 </body>
 </html>
