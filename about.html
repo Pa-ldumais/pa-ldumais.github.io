@@ -1,441 +1,1258 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description"
-          content="About Pierre-Alexandre L. Dumais — IT technician, Linux enthusiast and technology explorer.">
+  <title>Pierre-Alexandre Lévesque Dumais | IT & Technology</title>
 
-    <title>About Me — Pierre-Alexandre L. Dumais</title>
+  <meta
+    name="description"
+    content="Portfolio de Pierre-Alexandre Lévesque Dumais, technicien informatique et passionné de technologie à La Tuque, Québec."
+  >
 
-    <style>
-        :root {
-            --bg: #f6f7f9;
-            --surface: #ffffff;
-            --text: #1f2937;
-            --muted: #6b7280;
-            --accent: #2563eb;
-            --accent-hover: #1d4ed8;
-            --border: #e5e7eb;
-            --code-bg: #111827;
-        }
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
-        * {
-            box-sizing: border-box;
-        }
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --bg-secondary: #ffffff;
+      --text: #172033;
+      --muted: #667085;
+      --border: #e4e7ec;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --accent: #7c3aed;
+      --terminal: #111827;
+      --terminal-text: #d1fae5;
+      --shadow: 0 15px 40px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+    }
 
-        html {
-            scroll-behavior: smooth;
-        }
+    [data-theme="dark"] {
+      --bg: #0b1120;
+      --bg-secondary: #111827;
+      --text: #f3f4f6;
+      --muted: #9ca3af;
+      --border: #263244;
+      --primary: #60a5fa;
+      --primary-dark: #3b82f6;
+      --accent: #a78bfa;
+      --terminal: #050914;
+      --terminal-text: #a7f3d0;
+      --shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+    }
 
-        body {
-            margin: 0;
-            font-family:
-                Inter,
-                ui-sans-serif,
-                system-ui,
-                -apple-system,
-                BlinkMacSystemFont,
-                "Segoe UI",
-                sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.7;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        .container {
-            width: min(900px, 92%);
-            margin: auto;
-        }
+    html {
+      scroll-behavior: smooth;
+    }
 
-        /* Navigation */
+    body {
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
 
-        nav {
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
-        }
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition:
+        background 0.3s ease,
+        color 0.3s ease;
+    }
 
-        .nav-inner {
-            min-height: 64px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
-        }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-        .brand {
-            font-weight: 700;
-            text-decoration: none;
-            color: var(--text);
-        }
+    .container {
+      width: min(1100px, 92%);
+      margin: auto;
+    }
 
-        .lang-button {
-            border: 1px solid var(--border);
-            background: var(--surface);
-            color: var(--text);
-            border-radius: 8px;
-            padding: 8px 14px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: 0.2s ease;
-        }
+    /* =========================
+       NAVIGATION
+    ========================= */
 
-        .lang-button:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
 
-        /* Hero */
+      backdrop-filter: blur(15px);
+      background: color-mix(
+        in srgb,
+        var(--bg) 82%,
+        transparent
+      );
 
-        header {
-            padding: 90px 0 70px;
-            text-align: center;
-        }
+      border-bottom: 1px solid var(--border);
+    }
 
-        .badge {
-            display: inline-block;
-            padding: 6px 12px;
-            margin-bottom: 18px;
-            border-radius: 999px;
-            background: #eff6ff;
-            color: var(--accent);
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
+    .nav-inner {
+      min-height: 70px;
 
-        h1 {
-            margin: 0;
-            font-size: clamp(2.3rem, 6vw, 4rem);
-            letter-spacing: -0.04em;
-        }
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
 
-        .subtitle {
-            margin: 15px auto 0;
-            max-width: 650px;
-            color: var(--muted);
-            font-size: 1.15rem;
-        }
+    .logo {
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: -0.03em;
+    }
 
-        /* Content */
+    .logo span {
+      color: var(--primary);
+    }
 
-        main {
-            padding-bottom: 80px;
-        }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-size: 0.95rem;
+    }
 
-        .card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 35px;
-            margin-bottom: 25px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
-        }
+    .nav-links a {
+      color: var(--muted);
+      transition: color 0.2s ease;
+    }
 
-        h2 {
-            margin-top: 0;
-            font-size: 1.6rem;
-        }
+    .nav-links a:hover {
+      color: var(--primary);
+    }
 
-        h3 {
-            margin-top: 28px;
-            margin-bottom: 10px;
-        }
+    .controls {
+      display: flex;
+      gap: 8px;
+    }
 
-        p {
-            color: #374151;
-        }
+    button {
+      border: 1px solid var(--border);
+      background: var(--bg-secondary);
+      color: var(--text);
+      cursor: pointer;
+      border-radius: 10px;
+      padding: 8px 11px;
+      font-size: 0.9rem;
+      transition: 0.2s ease;
+    }
 
-        strong {
-            color: var(--text);
-        }
+    button:hover {
+      border-color: var(--primary);
+      transform: translateY(-1px);
+    }
 
-        .interests {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 12px;
-            margin-top: 25px;
-        }
+    /* =========================
+       HERO
+    ========================= */
 
-        .interest {
-            padding: 16px;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            background: #fafafa;
-        }
+    .hero {
+      min-height: calc(100vh - 70px);
 
-        .interest strong {
-            display: block;
-            margin-bottom: 4px;
-        }
+      display: grid;
+      place-items: center;
 
-        .interest span {
-            color: var(--muted);
-            font-size: 0.9rem;
-        }
+      padding: 90px 0;
+    }
 
-        /* Footer */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 60px;
+      align-items: center;
+    }
 
-        footer {
-            border-top: 1px solid var(--border);
-            padding: 30px 0;
-            text-align: center;
-            color: var(--muted);
-            font-size: 0.9rem;
-        }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
 
-        /* Language */
+      padding: 7px 12px;
+      border-radius: 999px;
 
-        .fr {
-            display: none;
-        }
+      background: color-mix(
+        in srgb,
+        var(--primary) 10%,
+        transparent
+      );
 
-        body.show-fr .en {
-            display: none;
-        }
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: 700;
 
-        body.show-fr .fr {
-            display: block;
-        }
+      margin-bottom: 20px;
+    }
 
-        /* Responsive */
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 0 5px rgba(34,197,94,0.12);
+    }
 
-        @media (max-width: 600px) {
-            header {
-                padding: 65px 0 45px;
-            }
+    h1 {
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      line-height: 0.98;
+      letter-spacing: -0.065em;
+      margin-bottom: 25px;
+    }
 
-            .card {
-                padding: 25px;
-            }
+    h1 span {
+      color: var(--primary);
+    }
 
-            .nav-inner {
-                min-height: 58px;
-            }
-        }
-    </style>
+    .hero-description {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 650px;
+      margin-bottom: 30px;
+    }
+
+    .location {
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 12px 18px;
+      border-radius: 12px;
+
+      font-weight: 700;
+      border: 1px solid var(--border);
+
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    /* =========================
+       TERMINAL
+    ========================= */
+
+    .terminal {
+      background: var(--terminal);
+      border-radius: 18px;
+      overflow: hidden;
+
+      box-shadow:
+        0 30px 70px rgba(0,0,0,0.18);
+
+      transform: rotate(1deg);
+      transition: transform 0.3s ease;
+    }
+
+    .terminal:hover {
+      transform: rotate(0deg) translateY(-5px);
+    }
+
+    .terminal-header {
+      height: 38px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 0 14px;
+
+      background: rgba(255,255,255,0.04);
+    }
+
+    .terminal-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #64748b;
+    }
+
+    .terminal-body {
+      padding: 25px;
+      min-height: 300px;
+
+      color: var(--terminal-text);
+      font-family:
+        "JetBrains Mono",
+        "Fira Code",
+        monospace;
+
+      font-size: 0.85rem;
+    }
+
+    .terminal-line {
+      margin-bottom: 10px;
+    }
+
+    .prompt {
+      color: #60a5fa;
+    }
+
+    .command {
+      color: #f9fafb;
+    }
+
+    /* =========================
+       SECTIONS
+    ========================= */
+
+    section {
+      padding: 100px 0;
+    }
+
+    .section-header {
+      margin-bottom: 45px;
+    }
+
+    .section-label {
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin-bottom: 15px;
+    }
+
+    .section-description {
+      color: var(--muted);
+      max-width: 700px;
+    }
+
+    /* =========================
+       CARDS
+    ========================= */
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+
+      box-shadow: var(--shadow);
+
+      transition:
+        transform 0.25s ease,
+        border-color 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+      border-color: color-mix(
+        in srgb,
+        var(--primary) 50%,
+        var(--border)
+      );
+    }
+
+    .card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 18px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* =========================
+       SKILLS
+    ========================= */
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill {
+      padding: 9px 14px;
+      border-radius: 999px;
+
+      border: 1px solid var(--border);
+      background: var(--bg-secondary);
+
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+
+      transition: 0.2s ease;
+    }
+
+    .skill:hover {
+      color: white;
+      background: var(--primary);
+      border-color: var(--primary);
+
+      transform: translateY(-3px) rotate(-1deg);
+    }
+
+    /* =========================
+       FUN SECTION
+    ========================= */
+
+    .interactive-box {
+      background:
+        linear-gradient(
+          135deg,
+          color-mix(in srgb, var(--primary) 12%, var(--bg-secondary)),
+          var(--bg-secondary)
+        );
+
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 35px;
+      text-align: center;
+    }
+
+    .fact {
+      min-height: 55px;
+      margin: 20px auto;
+      max-width: 650px;
+
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+
+    .fact-button {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+
+      padding: 12px 20px;
+      font-weight: 700;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      padding: 50px 0;
+
+      border-top: 1px solid var(--border);
+
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    /* =========================
+       ANIMATIONS
+    ========================= */
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .typing::after {
+      content: "|";
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 850px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 45px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 70px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      h1 {
+        font-size: 3rem;
+      }
+
+      section {
+        padding: 70px 0;
+      }
+
+      .terminal-body {
+        font-size: 0.75rem;
+        padding: 20px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<nav>
+  <!-- =========================
+       NAVIGATION
+  ========================== -->
+
+  <nav>
     <div class="container nav-inner">
-        <a class="brand" href="index.html">
-            P-A L. Dumais
-        </a>
 
-        <button class="lang-button" id="languageToggle">
-            🇫🇷 Français
+      <a href="#" class="logo">
+        PA<span>.</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#about" data-fr="À propos" data-en="About">À propos</a>
+        <a href="#skills" data-fr="Compétences" data-en="Skills">Compétences</a>
+        <a href="#explore" data-fr="Explorer" data-en="Explore">Explorer</a>
+      </div>
+
+      <div class="controls">
+        <button id="languageButton" aria-label="Change language">
+          EN
         </button>
+
+        <button id="themeButton" aria-label="Change theme">
+          ☾
+        </button>
+      </div>
+
     </div>
-</nav>
+  </nav>
 
-<header>
-    <div class="container">
 
-        <div class="en">
-            <span class="badge">IT Technician · Linux · Technology</span>
+  <!-- =========================
+       HERO
+  ========================== -->
 
-            <h1>About Me</h1>
+  <main>
 
-            <p class="subtitle">
-                IT technician and technology enthusiast exploring Linux,
-                infrastructure, hardware and open-source technologies.
-            </p>
+    <section class="hero">
+
+      <div class="container hero-grid">
+
+        <div class="fade-in">
+
+          <div class="eyebrow">
+            <span class="status-dot"></span>
+
+            <span
+              data-fr="Technicien informatique"
+              data-en="IT Technician">
+              Technicien informatique
+            </span>
+          </div>
+
+          <h1>
+            Pierre-Alexandre<br>
+            <span>Lévesque Dumais</span>
+          </h1>
+
+          <p class="location">
+            📍 La Tuque, Québec
+          </p>
+
+          <p
+            class="hero-description"
+            data-fr="Passionné par l'informatique, les systèmes et la technologie. J'aime comprendre comment les choses fonctionnent et trouver des solutions simples à des problèmes parfois compliqués."
+            data-en="Passionate about IT, systems and technology. I enjoy understanding how things work and finding simple solutions to sometimes complicated problems.">
+            Passionné par l'informatique, les systèmes et la technologie.
+            J'aime comprendre comment les choses fonctionnent et trouver
+            des solutions simples à des problèmes parfois compliqués.
+          </p>
+
+          <div class="buttons">
+
+            <a
+              href="about.html"
+              class="btn btn-primary"
+              data-fr="En savoir plus"
+              data-en="Learn more">
+              En savoir plus
+            </a>
+
+            <a
+              href="https://github.com/Pa-ldumais"
+              class="btn btn-secondary"
+              target="_blank"
+              rel="noopener">
+              GitHub ↗
+            </a>
+
+          </div>
+
         </div>
 
-        <div class="fr">
-            <span class="badge">Technicien informatique · Linux · Technologie</span>
 
-            <h1>À propos de moi</h1>
+        <!-- TERMINAL -->
 
-            <p class="subtitle">
-                Technicien informatique et passionné de technologie,
-                j'explore Linux, les infrastructures, le matériel et
-                les technologies open source.
-            </p>
+        <div class="terminal fade-in">
+
+          <div class="terminal-header">
+            <span class="terminal-dot"></span>
+            <span class="terminal-dot"></span>
+            <span class="terminal-dot"></span>
+          </div>
+
+          <div class="terminal-body">
+
+            <div class="terminal-line">
+              <span class="prompt">paldumais@github</span>:~$
+              <span class="command">whoami</span>
+            </div>
+
+            <div class="terminal-line">
+              pierre-alexandre
+            </div>
+
+            <br>
+
+            <div class="terminal-line">
+              <span class="prompt">paldumais@github</span>:~$
+              <span class="command">location</span>
+            </div>
+
+            <div class="terminal-line">
+              La Tuque, Québec 🇨🇦
+            </div>
+
+            <br>
+
+            <div class="terminal-line">
+              <span class="prompt">paldumais@github</span>:~$
+              <span class="command">focus</span>
+            </div>
+
+            <div class="terminal-line typing" id="typingText">
+              IT support
+            </div>
+
+            <br>
+
+            <div class="terminal-line">
+              <span class="prompt">paldumais@github</span>:~$
+              <span class="command">status</span>
+            </div>
+
+            <div class="terminal-line">
+              <span style="color:#86efac;">
+                ● curious
+              </span>
+              <br>
+              <span style="color:#93c5fd;">
+                ● learning
+              </span>
+              <br>
+              <span style="color:#c4b5fd;">
+                ● troubleshooting
+              </span>
+            </div>
+
+          </div>
+
         </div>
 
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         ABOUT
+    ========================== -->
+
+    <section id="about">
+
+      <div class="container">
+
+        <div class="section-header fade-in">
+
+          <div
+            class="section-label"
+            data-fr="À propos"
+            data-en="About">
+            À propos
+          </div>
+
+          <h2
+            data-fr="Un pied dans le support, l'autre dans la technologie."
+            data-en="One foot in support, the other in technology.">
+            Un pied dans le support, l'autre dans la technologie.
+          </h2>
+
+          <p
+            class="section-description"
+            data-fr="Mon intérêt pour l'informatique va au-delà du simple dépannage. J'aime explorer les systèmes, expérimenter avec différentes technologies et comprendre ce qui se passe derrière l'interface."
+            data-en="My interest in IT goes beyond troubleshooting. I enjoy exploring systems, experimenting with different technologies and understanding what happens behind the interface.">
+            Mon intérêt pour l'informatique va au-delà du simple dépannage.
+            J'aime explorer les systèmes, expérimenter avec différentes
+            technologies et comprendre ce qui se passe derrière l'interface.
+          </p>
+
+        </div>
+
+
+        <div class="cards">
+
+          <article class="card fade-in">
+
+            <div class="card-icon">🛠️</div>
+
+            <h3
+              data-fr="Support & dépannage"
+              data-en="Support & troubleshooting">
+              Support & dépannage
+            </h3>
+
+            <p
+              data-fr="Diagnostiquer les problèmes, trouver leur origine et remettre les choses en ordre."
+              data-en="Diagnosing problems, finding their root cause and getting things back on track.">
+              Diagnostiquer les problèmes, trouver leur origine et remettre
+              les choses en ordre.
+            </p>
+
+          </article>
+
+
+          <article class="card fade-in">
+
+            <div class="card-icon">💻</div>
+
+            <h3
+              data-fr="Systèmes"
+              data-en="Systems">
+              Systèmes
+            </h3>
+
+            <p
+              data-fr="Intérêt pour Linux, Windows, les systèmes d'exploitation et l'infrastructure informatique."
+              data-en="Interested in Linux, Windows, operating systems and IT infrastructure.">
+              Intérêt pour Linux, Windows, les systèmes d'exploitation et
+              l'infrastructure informatique.
+            </p>
+
+          </article>
+
+
+          <article class="card fade-in">
+
+            <div class="card-icon">🔍</div>
+
+            <h3
+              data-fr="Curiosité technique"
+              data-en="Technical curiosity">
+              Curiosité technique
+            </h3>
+
+            <p
+              data-fr="Quand quelque chose ne fonctionne pas, j'ai généralement envie de savoir pourquoi."
+              data-en="When something doesn't work, I usually want to know why.">
+              Quand quelque chose ne fonctionne pas, j'ai généralement envie
+              de savoir pourquoi.
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         SKILLS
+    ========================== -->
+
+    <section id="skills">
+
+      <div class="container">
+
+        <div class="section-header fade-in">
+
+          <div
+            class="section-label"
+            data-fr="Technologies"
+            data-en="Technologies">
+            Technologies
+          </div>
+
+          <h2
+            data-fr="Quelques outils de mon environnement."
+            data-en="Some tools from my environment.">
+            Quelques outils de mon environnement.
+          </h2>
+
+          <p
+            class="section-description"
+            data-fr="Une sélection de technologies et de domaines qui font partie de mon univers informatique."
+            data-en="A selection of technologies and areas that are part of my IT world.">
+            Une sélection de technologies et de domaines qui font partie
+            de mon univers informatique.
+          </p>
+
+        </div>
+
+
+        <div class="skills fade-in">
+
+          <span class="skill">Linux</span>
+          <span class="skill">Fedora</span>
+          <span class="skill">Windows</span>
+          <span class="skill">Git</span>
+          <span class="skill">GitHub</span>
+          <span class="skill">Networking</span>
+          <span class="skill">Troubleshooting</span>
+          <span class="skill">Hardware</span>
+          <span class="skill">Virtualization</span>
+          <span class="skill">PowerShell</span>
+          <span class="skill">Bash</span>
+          <span class="skill">HTML</span>
+          <span class="skill">CSS</span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         INTERACTIVE
+    ========================== -->
+
+    <section id="explore">
+
+      <div class="container">
+
+        <div class="section-header fade-in">
+
+          <div
+            class="section-label"
+            data-fr="Petit easter egg"
+            data-en="Little easter egg">
+            Petit easter egg
+          </div>
+
+          <h2
+            data-fr="Besoin d'un fait informatique?"
+            data-en="Need an IT fact?">
+            Besoin d'un fait informatique?
+          </h2>
+
+        </div>
+
+
+        <div class="interactive-box fade-in">
+
+          <div
+            class="fact"
+            id="fact"
+            data-fr="Cliquez sur le bouton. Promis, rien ne va planter."
+            data-en="Click the button. I promise nothing will crash.">
+            Cliquez sur le bouton.
+            Promis, rien ne va planter.
+          </div>
+
+          <button
+            class="fact-button"
+            id="factButton"
+            data-fr="Encore un!"
+            data-en="Another one!">
+            Encore un!
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer>
+
+    <div class="container footer-inner">
+
+      <div>
+        © <span id="year"></span>
+        Pierre-Alexandre Lévesque Dumais
+      </div>
+
+      <div>
+        La Tuque, Québec 🇨🇦
+      </div>
+
     </div>
-</header>
 
-<main>
-    <div class="container">
+  </footer>
 
-        <!-- English -->
 
-        <section class="card en">
-            <h2>👋 About Me</h2>
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
 
-            <p>
-                I'm <strong>Pierre-Alexandre Dumais</strong>, an IT technician
-                and technology enthusiast based in <strong>La Tuque, Québec</strong>.
-            </p>
+  <script>
 
-            <p>
-                My background is in <strong>IT support, systems, troubleshooting,
-                and technology infrastructure</strong>. I enjoy working with
-                both hardware and software, figuring out how things work,
-                and finding practical solutions to technical problems.
-            </p>
+    /* -------------------------
+       YEAR
+    ------------------------- */
 
-            <p>
-                I'm particularly interested in
-                <strong>Linux, open-source software, cloud technologies,
-                infrastructure, hardware, and emerging technologies</strong>.
-                I currently use <strong>Fedora</strong> as my main desktop
-                environment and enjoy exploring the Linux ecosystem.
-            </p>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
 
-            <p>
-                I also have a varied professional background outside of IT,
-                including customer service, logistics, and technology-focused
-                environments. These experiences have helped me develop a
-                practical approach to problem-solving and a better understanding
-                of the people behind the technology.
-            </p>
 
-            <p>
-                Through <strong>Solud Makerspace</strong>, I like to experiment,
-                build, learn, and document interesting things along the way.
-            </p>
+    /* -------------------------
+       THEME
+    ------------------------- */
 
-            <div class="interests">
-                <div class="interest">
-                    <strong>🐧 Linux</strong>
-                    <span>Fedora & open-source software</span>
-                </div>
+    const themeButton =
+      document.getElementById("themeButton");
 
-                <div class="interest">
-                    <strong>🖥️ Infrastructure</strong>
-                    <span>Systems, networks & troubleshooting</span>
-                </div>
+    const savedTheme =
+      localStorage.getItem("theme");
 
-                <div class="interest">
-                    <strong>🔧 Hardware</strong>
-                    <span>PCs, devices & technical experimentation</span>
-                </div>
+    if (savedTheme) {
+      document.documentElement.dataset.theme =
+        savedTheme;
+    }
 
-                <div class="interest">
-                    <strong>☁️ Cloud</strong>
-                    <span>Modern infrastructure & technologies</span>
-                </div>
-            </div>
-        </section>
+    function updateThemeIcon() {
 
-        <!-- Français -->
+      const dark =
+        document.documentElement.dataset.theme === "dark";
 
-        <section class="card fr">
-            <h2>👋 À propos de moi</h2>
+      themeButton.textContent =
+        dark ? "☀" : "☾";
+    }
 
-            <p>
-                Je suis <strong>Pierre-Alexandre Dumais</strong>, technicien
-                informatique et passionné de technologie basé au
-                <strong>La Tuque, Québec</strong>.
-            </p>
+    updateThemeIcon();
 
-            <p>
-                Mon parcours est principalement axé sur le
-                <strong>soutien informatique, les systèmes, le dépannage
-                et les infrastructures technologiques</strong>.
-                J'aime autant travailler avec le matériel qu'avec les logiciels,
-                comprendre comment les choses fonctionnent et trouver des
-                solutions pratiques aux problèmes techniques.
-            </p>
+    themeButton.addEventListener("click", () => {
 
-            <p>
-                Je m'intéresse particulièrement à
-                <strong>Linux, aux logiciels open source, aux technologies
-                infonuagiques, aux infrastructures, au matériel informatique
-                et aux nouvelles technologies</strong>.
-                J'utilise actuellement <strong>Fedora</strong> comme environnement
-                principal et j'aime explorer l'écosystème Linux.
-            </p>
+      const dark =
+        document.documentElement.dataset.theme === "dark";
 
-            <p>
-                J'ai également un parcours professionnel varié dans d'autres
-                domaines, notamment le service à la clientèle, la logistique
-                et différents environnements technologiques. Ces expériences
-                m'ont permis de développer une approche pratique du dépannage
-                et une meilleure compréhension des personnes qui utilisent
-                la technologie.
-            </p>
+      const newTheme =
+        dark ? "light" : "dark";
 
-            <p>
-                Avec <strong>Solud Makerspace</strong>, j'aime expérimenter,
-                construire, apprendre et documenter les choses intéressantes
-                que je découvre en chemin.
-            </p>
+      document.documentElement.dataset.theme =
+        newTheme;
 
-            <div class="interests">
-                <div class="interest">
-                    <strong>🐧 Linux</strong>
-                    <span>Fedora et logiciels open source</span>
-                </div>
+      localStorage.setItem(
+        "theme",
+        newTheme
+      );
 
-                <div class="interest">
-                    <strong>🖥️ Infrastructure</strong>
-                    <span>Systèmes, réseaux et dépannage</span>
-                </div>
+      updateThemeIcon();
 
-                <div class="interest">
-                    <strong>🔧 Matériel</strong>
-                    <span>PC, appareils et expérimentation</span>
-                </div>
-
-                <div class="interest">
-                    <strong>☁️ Cloud</strong>
-                    <span>Infrastructures et technologies modernes</span>
-                </div>
-            </div>
-        </section>
-
-    </div>
-</main>
-
-<footer>
-    <div class="container">
-        <span class="en">© 2026 Pierre-Alexandre Dumais · Built with HTML & CSS</span>
-        <span class="fr">© 2026 Pierre-Alexandre Dumais · Créé avec HTML et CSS</span>
-    </div>
-</footer>
-
-<script>
-    const toggle = document.getElementById("languageToggle");
-
-    toggle.addEventListener("click", () => {
-        document.body.classList.toggle("show-fr");
-
-        const isFrench =
-            document.body.classList.contains("show-fr");
-
-        document.documentElement.lang =
-            isFrench ? "fr" : "en";
-
-        toggle.textContent =
-            isFrench ? "🇬🇧 English" : "🇫🇷 Français";
-
-        localStorage.setItem(
-            "preferredLanguage",
-            isFrench ? "fr" : "en"
-        );
     });
 
-    // Remember language preference
-    const savedLanguage =
-        localStorage.getItem("preferredLanguage");
 
-    if (savedLanguage === "fr") {
-        document.body.classList.add("show-fr");
-        document.documentElement.lang = "fr";
-        toggle.textContent = "🇬🇧 English";
+    /* -------------------------
+       LANGUAGE
+    ------------------------- */
+
+    let language =
+      localStorage.getItem("language") || "fr";
+
+    const languageButton =
+      document.getElementById("languageButton");
+
+    function updateLanguage() {
+
+      document.documentElement.lang =
+        language;
+
+      document.querySelectorAll("[data-fr]")
+        .forEach(element => {
+
+          element.textContent =
+            element.dataset[language];
+
+        });
+
+      languageButton.textContent =
+        language === "fr" ? "EN" : "FR";
+
+      localStorage.setItem(
+        "language",
+        language
+      );
+
     }
-</script>
+
+    updateLanguage();
+
+    languageButton.addEventListener("click", () => {
+
+      language =
+        language === "fr" ? "en" : "fr";
+
+      updateLanguage();
+
+    });
+
+
+    /* -------------------------
+       TYPING EFFECT
+    ------------------------- */
+
+    const typingElement =
+      document.getElementById("typingText");
+
+    const phrases = [
+      "IT support",
+      "troubleshooting",
+      "Linux",
+      "networking",
+      "technology",
+      "curiosity"
+    ];
+
+    let phraseIndex = 0;
+    let characterIndex = 0;
+    let deleting = false;
+
+    function typeEffect() {
+
+      const phrase =
+        phrases[phraseIndex];
+
+      if (!deleting) {
+
+        characterIndex++;
+
+        typingElement.textContent =
+          phrase.substring(
+            0,
+            characterIndex
+          );
+
+        if (
+          characterIndex === phrase.length
+        ) {
+
+          deleting = true;
+
+          setTimeout(
+            typeEffect,
+            1400
+          );
+
+          return;
+        }
+
+      } else {
+
+        characterIndex--;
+
+        typingElement.textContent =
+          phrase.substring(
+            0,
+            characterIndex
+          );
+
+        if (characterIndex === 0) {
+
+          deleting = false;
+
+          phraseIndex =
+            (phraseIndex + 1) %
+            phrases.length;
+
+        }
+
+      }
+
+      setTimeout(
+        typeEffect,
+        deleting ? 45 : 85
+      );
+
+    }
+
+    typeEffect();
+
+
+    /* -------------------------
+       FUN FACTS
+    ------------------------- */
+
+    const facts = [
+
+      {
+        fr: "Le premier bug informatique célèbre était littéralement un insecte trouvé dans un ordinateur.",
+        en: "One of the first famous computer bugs was literally an insect found inside a computer."
+      },
+
+      {
+        fr: "Linux peut fonctionner sur des appareils allant des serveurs aux petits appareils embarqués.",
+        en: "Linux can run on everything from servers to tiny embedded devices."
+      },
+
+      {
+        fr: "DNS est essentiellement l'annuaire téléphonique d'Internet.",
+        en: "DNS is basically the phone book of the Internet."
+      },
+
+      {
+        fr: "Un redémarrage règle parfois réellement le problème. Pas toujours. Mais parfois.",
+        en: "A reboot really does sometimes fix the problem. Not always. But sometimes."
+      },
+
+      {
+        fr: "La commande 'sudo' peut transformer une mauvaise idée en très mauvaise idée.",
+        en: "The 'sudo' command can turn a bad idea into a very bad idea."
+      },
+
+      {
+        fr: "Le câble réseau est innocent jusqu'à preuve du contraire.",
+        en: "The network cable is innocent until proven otherwise."
+      }
+
+    ];
+
+    const factElement =
+      document.getElementById("fact");
+
+    const factButton =
+      document.getElementById("factButton");
+
+    factButton.addEventListener(
+      "click",
+      () => {
+
+        const fact =
+          facts[
+            Math.floor(
+              Math.random() *
+              facts.length
+            )
+          ];
+
+        factElement.textContent =
+          fact[language];
+
+      }
+    );
+
+
+    /* -------------------------
+       SCROLL ANIMATIONS
+    ------------------------- */
+
+    const observer =
+      new IntersectionObserver(
+        entries => {
+
+          entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+              entry.target.classList.add(
+                "visible"
+              );
+
+            }
+
+          });
+
+        },
+        {
+          threshold: 0.12
+        }
+      );
+
+
+    document
+      .querySelectorAll(".fade-in")
+      .forEach(element => {
+
+        observer.observe(element);
+
+      });
+
+  </script>
 
 </body>
 </html>
-```
